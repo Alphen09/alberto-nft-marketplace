@@ -1,7 +1,139 @@
-const buttons = document.querySelectorAll("button");
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    alert(button.textContent + " clicked!");
-  });
-});
+body{
+    background:#0b1020;
+    color:white;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:#131a2f;
+    position:sticky;
+    top:0;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#FFD700;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#7B2EFF;
+}
+
+/* LOGIN BUTTON */
+
+.login-btn{
+    background:#7B2EFF;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.login-btn:hover{
+    background:#FFD700;
+    color:#111;
+}
+
+/* HERO SECTION */
+
+.hero{
+    text-align:center;
+    padding:120px 20px;
+}
+
+.hero h1{
+    font-size:52px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:#cccccc;
+    font-size:20px;
+    margin-bottom:35px;
+}
+
+.hero-buttons button{
+    background:#FFD700;
+    color:#111;
+    border:none;
+    padding:15px 30px;
+    margin:10px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.hero-buttons button:hover{
+    background:#7B2EFF;
+    color:white;
+}
+
+/* FEATURED */
+
+.featured{
+    padding:70px 8%;
+}
+
+.featured h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:36px;
+}
+
+.cards{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:300px;
+    background:#18233d;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px #7B2EFF;
+}
+
+.card h3{
+    color:#FFD700;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    margin-top:60px;
+    background:#131a2f;
+}
