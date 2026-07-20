@@ -1,0 +1,116 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0b1020;
+    color:white;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:#131a2f;
+}
+
+.logo{
+    font-size:28px;
+    color:#FFD700;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+}
+
+nav a:hover{
+    color:#7B2EFF;
+}
+
+.marketplace{
+    padding:60px 8%;
+    text-align:center;
+}
+
+.marketplace h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.marketplace p{
+    color:#cccccc;
+    margin-bottom:30px;
+}
+
+.search{
+    width:100%;
+    max-width:500px;
+    padding:15px;
+    border-radius:10px;
+    border:none;
+    margin-bottom:30px;
+}
+
+.filters button{
+    padding:12px 20px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#7B2EFF;
+    color:white;
+}
+
+.filters button:hover{
+    background:#FFD700;
+    color:#111;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.card{
+    width:280px;
+    background:#18233d;
+    padding:25px;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px #7B2EFF;
+}
+
+.card h3{
+    color:#FFD700;
+    margin-bottom:15px;
+}
+
+.card button{
+    margin-top:15px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#FFD700;
+    color:#111;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.card button:hover{
+    background:#7B2EFF;
+    color:white;
+}
