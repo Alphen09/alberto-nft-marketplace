@@ -11,15 +11,10 @@ p.subtitle { text-align: center; margin-bottom: 20px; }
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
 .nft-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 10px; text-align: center; backdrop-filter: blur(10px); }
 .nft-card img { width: 100%; border-radius: 10px; }
-button { background: #f59e0b; color: black; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; margin-top: 10px; width: 100%; font-size: 16px; }
+button { background: #f59e0b; color: black; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; margin-top: 10px; width: 100%; font-size: 16px; cursor: pointer; }
 .login-btn { background: #9333ea; color: white; margin-bottom: 20px; }
 </style>
-
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-<script>
-Pi.init({ version: "2.0", sandbox: true }) // TESTNET muna
-</script>
-
 </head>
 <body>
 <h1>👑 Alberto NFT Marketplace</h1>
@@ -36,35 +31,29 @@ Pi.init({ version: "2.0", sandbox: true }) // TESTNET muna
 </div>
 
 <script>
-// MGA UTOS PARA SA PI WALLET
+window.onload = function() {
+  Pi.init({ version: "2.0", sandbox: true })
+}
+
 function loginPi() {
-Pi.authenticate(['username', 'payments'], function(auth) {
-alert("Welcome " + auth.user.username + "!")
-}, function(error) {
-alert("Login Error: " + error)
-})
+  Pi.authenticate(['username', 'payments'], function(auth) {
+    alert("Welcome " + auth.user.username + "!")
+  }, function(error) {
+    alert("Login Error: " + error)
+  })
 }
 
 function buyNFT(id, amount) {
-Pi.createPayment({
-amount: amount, // 0.01 Test Pi muna
-memo: "Buy NFT #" + id,
-metadata: {nft_id: id}
-}, {
-onReadyForServerApproval: function(paymentId) {
-console.log("Approve:", paymentId)
-alert("Payment Created. Waiting for approval...")
-},
-onReadyForServerCompletion: function(paymentId, txid) {
-alert("Payment Success! TX: " + txid)
-},
-onCancel: function(paymentId) {
-alert("Payment Cancelled")
-},
-onError: function(error) {
-alert("Error: " + error)
-}
-})
+  Pi.createPayment({
+    amount: amount,
+    memo: "Buy NFT #" + id,
+    metadata: {nft_id: id}
+  }, {
+    onReadyForServerApproval: function(paymentId) { alert("Payment Created. ID: " + paymentId) },
+    onReadyForServerCompletion: function(paymentId, txid) { alert("Payment Success! TX: " + txid) },
+    onCancel: function(paymentId) { alert("Payment Cancelled") },
+    onError: function(error) { alert("Error: " + error) }
+  })
 }
 </script>
 </body>
