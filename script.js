@@ -1,23 +1,75 @@
-// Alberto NFT Marketplace v2 Alpha
+// Alberto NFT Marketplace
+// Pi SDK Script
 
-document.addEventListener("DOMContentLoaded", () => {
+let currentUser = null;
 
-    console.log("Welcome to Alberto NFT Marketplace v2 Alpha");
-
-    // Hero Buttons
-    const buttons = document.querySelectorAll(".hero-buttons button");
-
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            alert("This feature is coming soon!");
+// Initialize Pi SDK
+window.onload = function () {
+    try {
+        Pi.init({
+            version: "2.0",
+            sandbox: true // Palitan ng false kapag Mainnet na
         });
-    });
 
-    // Login Button
-    const loginBtn = document.querySelector(".login-btn");
+        console.log("Pi SDK Initialized");
+    } catch (e) {
+        console.error(e);
+    }
+};
 
-    loginBtn.addEventListener("click", () => {
-        alert("Pi Login will be available in a future update.");
+// Login Button
+document.getElementById("loginBtn").addEventListener("click", loginPi);
+
+async function loginPi() {
+
+    try {
+
+        const auth = await Pi.authenticate(
+            ["username", "payments"],
+            onIncompletePaymentFound
+        );
+
+        currentUser = auth.user;
+
+        document.getElementById("loginBtn").innerHTML =
+            "👤 " + currentUser.username;
+
+        alert("Welcome " + currentUser.username + "!");
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Login cancelled.");
+
+    }
+
+}
+
+// Buy Buttons
+const buyButtons = document.querySelectorAll(".card button");
+
+buyButtons.forEach((btn, index) => {
+
+    btn.addEventListener("click", () => {
+
+        if (!currentUser) {
+
+            alert("Please login with Pi first.");
+
+            return;
+
+        }
+
+        alert("NFT #" + (index + 1) + " selected.\nPi Payment will be connected in the next update.");
+
     });
 
 });
+
+// Required callback
+function onIncompletePaymentFound(payment) {
+
+    console.log("Incomplete payment:", payment);
+
+}
