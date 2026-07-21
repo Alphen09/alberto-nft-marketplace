@@ -3,59 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alberto NFT Marketplace</title>
+<title>Alberto NFT Test</title>
 <style>
-body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-family: Arial; margin: 0; padding: 20px; }
-h1 { text-align: center; }
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
-.nft-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 10px; text-align: center; }
-.nft-card img { width: 100%; border-radius: 10px; }
-button { background: #f59e0b; color: black; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; margin-top: 10px; width: 100%; }
+body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-family: Arial; margin: 0; padding: 20px; text-align: center; }
+h1 { margin-bottom: 30px; }
+button { background: #f59e0b; color: black; border: none; padding: 20px; border-radius: 10px; font-weight: bold; margin-top: 10px; width: 100%; font-size: 20px; }
 </style>
 
-<!-- NILAGAY NA NATIN ANG PI DITO BOSS -->
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 <script>
-  Pi.init({ version: "2.0", sandbox: true }) // TESTNET = sandbox:true
+  alert("Step 1: SDK Loaded")
+  Pi.init({ version: "2.0", sandbox: true })
+  alert("Step 2: Pi Init Done")
 </script>
 
 </head>
 <body>
-<h1>👑 Alberto NFT Marketplace</h1>
-<button onclick="loginPi()">Login with Pi</button>
-
-<div class="grid">
-<div class="nft-card"><img src="https://picsum.photos/200/200?1"><p>NFT #1</p><button onclick="buyNFT(1, 0.01)">Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?2"><p>NFT #2</p><button onclick="buyNFT(2, 0.01)">Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?3"><p>NFT #3</p><button onclick="buyNFT(3, 0.01)">Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?4"><p>NFT #4</p><button onclick="buyNFT(4, 0.01)">Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?5"><p>NFT #5</p><button onclick="buyNFT(5, 0.01)">Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?6"><p>NFT #6</p><button onclick="buyNFT(6, 0.01)">Buy Now</button></div>
-</div>
+<h1>👑 TEST LANG MUNA</h1>
+<button onclick="loginPi()">TEST LOGIN WITH PI</button>
 
 <script>
-// MGA UTOS PARA SA PI WALLET
 function loginPi() {
+  alert("Step 3: Button Clicked")
   Pi.authenticate(['username', 'payments'], function(auth) {
-    alert("Welcome " + auth.user.username + "!")
+    alert("SUCCESS! Welcome " + auth.user.username + "!")
   }, function(error) {
-    alert("Login Error: " + error)
-  })
-}
-
-function buyNFT(id, amount) {
-  Pi.createPayment({
-    amount: amount, // 0.01 Test Pi muna
-    memo: "Buy NFT #" + id,
-    metadata: {nft_id: id}
-  }, {
-    onReadyForServerApproval: function(paymentId) { console.log("Approve:", paymentId) },
-    onReadyForServerCompletion: function(paymentId, txid) { alert("Payment Success! TX: " + txid) },
-    onCancel: function(paymentId) { alert("Cancelled") },
-    onError: function(error) { alert("Error: " + error) }
+    alert("ERROR: " + error)
   })
 }
 </script>
-
 </body>
 </html>
