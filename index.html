@@ -12,17 +12,50 @@ h1 { text-align: center; }
 .nft-card img { width: 100%; border-radius: 10px; }
 button { background: #f59e0b; color: black; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; margin-top: 10px; width: 100%; }
 </style>
+
+<!-- NILAGAY NA NATIN ANG PI DITO BOSS -->
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<script>
+  Pi.init({ version: "2.0", sandbox: true }) // TESTNET = sandbox:true
+</script>
+
 </head>
 <body>
 <h1>👑 Alberto NFT Marketplace</h1>
-<button>Login with Pi</button>
+<button onclick="loginPi()">Login with Pi</button>
+
 <div class="grid">
-<div class="nft-card"><img src="https://picsum.photos/200/200?1"><p>NFT #1</p><button>Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?2"><p>NFT #2</p><button>Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?3"><p>NFT #3</p><button>Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?4"><p>NFT #4</p><button>Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?5"><p>NFT #5</p><button>Buy Now</button></div>
-<div class="nft-card"><img src="https://picsum.photos/200/200?6"><p>NFT #6</p><button>Buy Now</button></div>
+<div class="nft-card"><img src="https://picsum.photos/200/200?1"><p>NFT #1</p><button onclick="buyNFT(1, 0.01)">Buy Now</button></div>
+<div class="nft-card"><img src="https://picsum.photos/200/200?2"><p>NFT #2</p><button onclick="buyNFT(2, 0.01)">Buy Now</button></div>
+<div class="nft-card"><img src="https://picsum.photos/200/200?3"><p>NFT #3</p><button onclick="buyNFT(3, 0.01)">Buy Now</button></div>
+<div class="nft-card"><img src="https://picsum.photos/200/200?4"><p>NFT #4</p><button onclick="buyNFT(4, 0.01)">Buy Now</button></div>
+<div class="nft-card"><img src="https://picsum.photos/200/200?5"><p>NFT #5</p><button onclick="buyNFT(5, 0.01)">Buy Now</button></div>
+<div class="nft-card"><img src="https://picsum.photos/200/200?6"><p>NFT #6</p><button onclick="buyNFT(6, 0.01)">Buy Now</button></div>
 </div>
+
+<script>
+// MGA UTOS PARA SA PI WALLET
+function loginPi() {
+  Pi.authenticate(['username', 'payments'], function(auth) {
+    alert("Welcome " + auth.user.username + "!")
+  }, function(error) {
+    alert("Login Error: " + error)
+  })
+}
+
+function buyNFT(id, amount) {
+  Pi.createPayment({
+    amount: amount, // 0.01 Test Pi muna
+    memo: "Buy NFT #" + id,
+    metadata: {nft_id: id}
+  }, {
+    onReadyForServerApproval: function(paymentId) { console.log("Approve:", paymentId) },
+    onReadyForServerCompletion: function(paymentId, txid) { alert("Payment Success! TX: " + txid) },
+    onCancel: function(paymentId) { alert("Cancelled") },
+    onError: function(error) { alert("Error: " + error) }
+  })
+}
+</script>
+
 </body>
 </html>
