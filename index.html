@@ -1,40 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberto NFT Marketplace</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; min-height: 100vh; }
-        header { background: rgba(0,0,0,0.3); padding: 30px 20px; text-align: center; }
-        h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .login-btn { background: #ffc107; color: #000; border: none; padding: 15px 40px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 15px; }
-        .container { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
-        .nft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .nft-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; text-align: center; }
-        .nft-img { width: 100%; height: 200px; background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%); border-radius: 10px; margin-bottom: 15px; }
-        .price { color: #ffc107; font-size: 20px; font-weight: bold; margin: 10px 0; }
-        .buy-btn { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>👑 Alberto NFT Marketplace 👑</h1>
-        <p>Buy and Sell Exclusive NFTs with Pi</p>
-        <button class="login-btn" onclick="alert('Pi Login coming soon!')">Login with Pi</button>
-    </header>
-
-    <div class="container">
-        <h2>🔥 Featured NFTs</h2>
-        <div class="nft-grid">
-            <div class="nft-card"><div class="nft-img"></div><h3>Crypto King #001</h3><p class="price">5.5 π</p><button class="buy-btn">Buy Now</button></div>
-            <div class="nft-card"><div class="nft-img"></div><h3>Pi Pioneer #002</h3><p class="price">3.2 π</p><button class="buy-btn">Buy Now</button></div>
-            <div class="nft-card"><div class="nft-img"></div><h3>Golden Miner #003</h3><p class="price">8.0 π</p><button class="buy-btn">Buy Now</button></div>
-            <div class="nft-card"><div class="nft-img"></div><h3>Alberto Legend #004</h3><p class="price">12.5 π</p><button class="buy-btn">Buy Now</button></div>
-            <div class="nft-card"><div class="nft-img"></div><h3>Pi Networker #005</h3><p class="price">4.7 π</p><button class="buy-btn">Buy Now</button></div>
-            <div class="nft-card"><div class="nft-img"></div><h3>Blockchain Boss #006</h3><p class="price">6.9 π</p><button class="buy-btn">Buy Now</button></div>
-        </div>
-    </div>
-</body>
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alberto NFT Marketplace</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; min-height: 100vh; }
+header { background: rgba(0,0,0,0.3); padding: 30px 20px; text-align: center; }
+h1 { font-size: 2.5em; margin-bottom: 10px; }
+.login-btn { background: #ffc107; color: #000; border: none; padding: 15px 40px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+.container { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+.nft-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
+.nft-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; text-align: center; backdrop-filter: blur(10px); }
+.nft-img { width: 100%; height: 150px; border-radius: 10px; margin-bottom: 15px; object-fit: cover; }
+.price { color: #ffc107; font-size: 18px; font-weight: bold; margin: 10px 0; }
+.buy-btn { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font
