@@ -43,10 +43,13 @@ async function loginPi() {
 
     try {
 
-        const auth = await Pi.authenticate(
-            ["username", "payments"],
-            onIncompletePaymentFound
-        );
+        alert("Calling Pi.authenticate...");
+
+const auth = await Pi.authenticate(
+    ["username"],
+    onIncompletePaymentFound
+);
+       
 
         currentUser = auth.user;
 
