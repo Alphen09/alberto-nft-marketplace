@@ -1,36 +1,45 @@
-// Alberto NFT Marketplace v2
+// Alberto NFT Marketplace - Debug Version
 
 let currentUser = null;
 
-// Initialize Pi SDK
 window.addEventListener("load", () => {
+
+    const loginBtn = document.getElementById("loginBtn");
+
+    if (!loginBtn) {
+        alert("Login button not found.");
+        return;
+    }
+
+    loginBtn.addEventListener("click", loginPi);
+
+    if (typeof Pi === "undefined") {
+        alert("Pi SDK is NOT loaded.");
+        return;
+    }
+
     try {
         Pi.init({
             version: "2.0",
-            sandbox: true // Palitan ng false kapag Mainnet
+            sandbox: true
         });
 
-        console.log("✅ Pi SDK Initialized");
+        console.log("Pi SDK Ready");
 
-        const loginBtn = document.getElementById("loginBtn");
-
-        if (loginBtn) {
-            loginBtn.addEventListener("click", loginPi);
-        }
-
-        const buyButtons = document.querySelectorAll(".card button");
-
-        buyButtons.forEach((btn, index) => {
-            btn.addEventListener("click", () => buyNFT(index + 1));
-        });
-
-    } catch (err) {
-        console.error("Pi SDK Error:", err);
+    } catch (e) {
+        alert("Pi SDK Init Error: " + e.message);
     }
+
 });
 
-// Login with Pi
 async function loginPi() {
+
+    alert("Login button clicked!");
+
+    if (typeof Pi === "undefined") {
+        alert("Pi SDK not detected.");
+        return;
+    }
 
     try {
 
@@ -44,39 +53,17 @@ async function loginPi() {
         document.getElementById("loginBtn").textContent =
             "👤 " + currentUser.username;
 
-        alert("Welcome " + currentUser.username + "!");
+        alert("Welcome " + currentUser.username);
 
     } catch (err) {
 
+        alert("Authentication Error");
         console.error(err);
 
-        alert("Pi Login failed or cancelled.");
-
     }
 
 }
 
-// Buy NFT
-function buyNFT(id) {
-
-    if (!currentUser) {
-
-        alert("Please login with Pi first.");
-
-        return;
-
-    }
-
-    alert(
-        "NFT #" + id +
-        "\n\nPi Payment integration will be added in the next update."
-    );
-
-}
-
-// Required callback
 function onIncompletePaymentFound(payment) {
-
-    console.log("Incomplete Payment:", payment);
-
+    console.log(payment);
 }
