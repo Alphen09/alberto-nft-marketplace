@@ -1,4 +1,4 @@
-// Alberto NFT Marketplace - Debug Version
+// Alberto NFT Marketplace - Pi Login Debug
 
 let currentUser = null;
 
@@ -11,10 +11,8 @@ window.addEventListener("load", () => {
         return;
     }
 
-    loginBtn.addEventListener("click", loginPi);
-
     if (typeof Pi === "undefined") {
-        alert("Pi SDK is NOT loaded.");
+        alert("Pi SDK not loaded.");
         return;
     }
 
@@ -24,11 +22,13 @@ window.addEventListener("load", () => {
             sandbox: true
         });
 
-        console.log("Pi SDK Ready");
-
-    } catch (e) {
-        alert("Pi SDK Init Error: " + e.message);
+        console.log("Pi SDK Initialized");
+    } catch (err) {
+        alert("Pi.init Error: " + err.message);
+        return;
     }
+
+    loginBtn.addEventListener("click", loginPi);
 
 });
 
@@ -41,15 +41,18 @@ async function loginPi() {
         return;
     }
 
+    alert("Pi SDK detected.");
+
     try {
 
-        alert("Calling Pi.authenticate...");
+        alert("Before authenticate");
 
-const auth = await Pi.authenticate(
-    ["username"],
-    onIncompletePaymentFound
-);
-       
+        const auth = await Pi.authenticate(
+            ["username"],
+            onIncompletePaymentFound
+        );
+
+        alert("After authenticate");
 
         currentUser = auth.user;
 
@@ -60,13 +63,18 @@ const auth = await Pi.authenticate(
 
     } catch (err) {
 
-        alert("Authentication Error");
         console.error(err);
+
+        if (err && err.message) {
+            alert("Authentication Error: " + err.message);
+        } else {
+            alert("Authentication Error");
+        }
 
     }
 
 }
 
 function onIncompletePaymentFound(payment) {
-    console.log(payment);
+    console.log("Incomplete Payment:", payment);
 }
