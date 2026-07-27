@@ -1,37 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-const loginBtn = document.getElementById("loginBtn");
+    Pi.init({
+        version: "2.0",
+        sandbox: true
+    });
 
-if (!loginBtn) return;
+    const loginBtn = document.getElementById("loginBtn");
 
-Pi.init({
-version: "2.0",
-sandbox: true
-});
-
-loginBtn.addEventListener("click", loginPi);
+    if (loginBtn) {
+        loginBtn.addEventListener("click", loginPi);
+    }
 
 });
 
 async function loginPi() {
 
-try {
+    try {
 
-const scopes = ["username"];
+        const scopes = ["username"];
 
-const auth = await Pi.authenticate(scopes);
+        const auth = await Pi.authenticate(
+            scopes,
+            function onIncompletePaymentFound(payment) {
+                console.log("Incomplete payment:", payment);
+            }
+        );
 
-alert("Welcome " + auth.user.username);
+        console.log(auth);
 
-document.getElementById("loginBtn").innerText =
-"👤 " + auth.user.username;
+        document.getElementById("loginBtn").innerHTML =
+        "👤 " + auth.user.username;
 
-} catch (e) {
+        alert("Welcome " + auth.user.username);
 
-console.log(e);
+    } catch (error) {
 
-alert("Pi Login Cancelled");
+        console.error(error);
 
-}
+        alert("Pi Login Cancelled or Failed");
+
+    }
 
 }
