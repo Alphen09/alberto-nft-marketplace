@@ -1,80 +1,37 @@
-// Alberto NFT Marketplace - Pi Login Debug
+document.addEventListener("DOMContentLoaded", () => {
 
-let currentUser = null;
+const loginBtn = document.getElementById("loginBtn");
 
-window.addEventListener("load", () => {
+if (!loginBtn) return;
 
-    const loginBtn = document.getElementById("loginBtn");
+Pi.init({
+version: "2.0",
+sandbox: true
+});
 
-    if (!loginBtn) {
-        alert("Login button not found.");
-        return;
-    }
-
-    if (typeof Pi === "undefined") {
-        alert("Pi SDK not loaded.");
-        return;
-    }
-
-    try {
-        Pi.init({
-            version: "2.0",
-            sandbox: true
-        });
-
-        console.log("Pi SDK Initialized");
-    } catch (err) {
-        alert("Pi.init Error: " + err.message);
-        return;
-    }
-
-    loginBtn.addEventListener("click", loginPi);
+loginBtn.addEventListener("click", loginPi);
 
 });
 
 async function loginPi() {
 
-    alert("Login button clicked!");
+try {
 
-    if (typeof Pi === "undefined") {
-        alert("Pi SDK not detected.");
-        return;
-    }
+const scopes = ["username"];
 
-    alert("Pi SDK detected.");
+const auth = await Pi.authenticate(scopes);
 
-    try {
+alert("Welcome " + auth.user.username);
 
-        alert("Before authenticate");
+document.getElementById("loginBtn").innerText =
+"👤 " + auth.user.username;
 
-        const auth = await Pi.authenticate(
-            ["username"],
-            onIncompletePaymentFound
-        );
+} catch (e) {
 
-        alert("After authenticate");
+console.log(e);
 
-        currentUser = auth.user;
-
-        document.getElementById("loginBtn").textContent =
-            "👤 " + currentUser.username;
-
-        alert("Welcome " + currentUser.username);
-
-    } catch (err) {
-
-        console.error(err);
-
-        if (err && err.message) {
-            alert("Authentication Error: " + err.message);
-        } else {
-            alert("Authentication Error");
-        }
-
-    }
+alert("Pi Login Cancelled");
 
 }
 
-function onIncompletePaymentFound(payment) {
-    console.log("Incomplete Payment:", payment);
 }
